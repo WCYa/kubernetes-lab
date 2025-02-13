@@ -1,1 +1,3 @@
 /venv
+inventory/my-cluster/credentials/
+inventory/my-cluster/artifacts/
