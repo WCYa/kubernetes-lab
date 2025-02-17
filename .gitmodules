@@ -1,3 +1,7 @@
 [submodule "kubespray"]
 	path = kubespray
 	url = https://github.com/kubernetes-sigs/kubespray.git
+[submodule "third_party/rook"]
+	path = third_party/rook
+	url = https://github.com/rook/rook.git
+	branch = release-1.16
