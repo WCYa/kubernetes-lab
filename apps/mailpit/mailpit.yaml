@@ -51,6 +51,11 @@ spec:
             value: /data/mailpit.db
           - name: TZ
             value: Asia/Taipei
+          - name: MP_UI_AUTH
+            valueFrom:
+              secretKeyRef:
+                name: mailpit-secret
+                key: MP_UI_AUTH
         volumeMounts:
         - name: mailpit-db
           mountPath: /data
