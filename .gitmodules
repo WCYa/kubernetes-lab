@@ -5,3 +5,7 @@
 	path = third_party/rook
 	url = https://github.com/rook/rook.git
 	branch = release-1.16
+[submodule "third_party/ingress-nginx"]
+	path = third_party/ingress-nginx
+	url = https://github.com/kubernetes/ingress-nginx
+	branch = release-1.12
