@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-mailpit
+  namespace: development
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "maildev.k8s.wcya.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mailpit
+            port:
+              number: 8025
