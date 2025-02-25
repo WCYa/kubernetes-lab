@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mailpit-crt
+  namespace: development
+spec:
+  secretName: mailpit-crt-secret
+  duration: 720h
+  commonName: "maildev.k8s.wcya.com"
+  dnsNames:
+    - "maildev.k8s.wcya.com"
+  issuerRef:
+    name: intermediate-ca-issuer
+    kind: Issuer
