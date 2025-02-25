@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: ingress-mailpit
   namespace: development
+  annotations:
+    cert-manager.io/issuer: "intermediate-ca-issuer"
 spec:
   ingressClassName: nginx
   rules:
@@ -16,3 +18,7 @@ spec:
             name: mailpit
             port:
               number: 8025
+  tls:
+    - hosts:
+        - maildev.k8s.wcya.com
+      secretName: mailpit-crt-secret-auto
