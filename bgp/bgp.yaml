@@ -1,0 +1,24 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: BGPConfiguration
+metadata:
+  name: default
+spec:
+  logSeverityScreen: Info
+  asNumber: 64512
+  serviceClusterIPs:
+    - cidr: 10.233.0.0/18 # Kubernetes internal network for services
+  bindMode: NodeIP
+---
+apiVersion: crd.projectcalico.org/v1
+kind: BGPPeer
+metadata:
+  name: fortigate
+spec:
+  nodeSelector: has(node-role.kubernetes.io/control-plane)
+  peerIP: 192.168.10.254
+  asNumber: 64612
+  password:
+    secretKeyRef:
+      name: bgp-passwords
+      key: fortigate
