@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: development
+resources:
+  - customenvoyproxy.yaml
+  - gateway.yaml
+secretGenerator:
+- name: gateway-default-tls
+  type: "kubernetes.io/tls"
+  files:
+    - tls.crt=tls/tls.crt
+    - tls.key=tls/tls.key
+replacements:
+  - source:
+      kind: Secret
+      name: gateway-default-tls
+      fieldPath: metadata.name
+    targets:
+      - select:
+          kind: Gateway
+          name: eg
+        fieldPaths:
+          - spec.listeners.0.tls.certificateRefs.0.name
+configurations:
+  # Tie target Secret's name to Gateway's referrer spec/listeners/tls/certificateRefs/name
+  - nameReference.yaml
