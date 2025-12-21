@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-k8s-wcya-test
+  namespace: gateway
+spec:
+  secretName: wildcard-k8s-wcya-test-tls
+  issuerRef:
+    name: my-ca-issuer
+    kind: ClusterIssuer
+  commonName: "*.k8s.wcya.test"
+  dnsNames:
+  - "*.k8s.wcya.test"

@@ -1,0 +1,18 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: jenkins
+spec:
+  parentRefs:
+  - name: eg
+    namespace: gateway
+  hostnames:
+  - "jenkins.k8s.wcya.test"
+  rules:
+  - backendRefs:
+    - name: jenkins
+      port: 80
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
